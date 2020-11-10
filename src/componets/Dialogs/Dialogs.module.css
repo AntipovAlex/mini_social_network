@@ -1,0 +1,22 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogsItems {
+    padding: 10px;
+}
+.messangers {
+    padding: 10px;
+}
+.item a {
+    color: black;
+}
+.item a.aktivLink{
+    color: gold;
+}
+.item img{
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    border-radius: 10px;
+}
