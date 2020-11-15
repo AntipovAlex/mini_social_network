@@ -1,3 +1,8 @@
+const UPDEATE_NEW_POST_TEXT = 'UPDEATE-NEW-POST-TEXT';
+const ADD_POST = 'ADD-POST';
+const ADD_MESSANGER = 'ADD-MESSANGER';
+const UPDEATE_NEW_MESSANGER_TEXT = 'UPDEATE-NEW-MESSANGER-TEXT';
+
 let store = {
     _callSubscriber  ()  {
     },
@@ -64,7 +69,7 @@ let store = {
          this._callSubscriber = observer;
     },
     dispatch(action) {
-        if(action.type === 'ADD-POST'){
+        if(action.type === ADD_POST){
             let newPost = {
                 id: 5,
                 post: this._state.profilePage.newPostChange,
@@ -73,10 +78,11 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostChange = "";
             this._callSubscriber(this._state);
-        } else if(action.type === 'UPDEATE-NEW-POST-TEXT'){
+        } else if(action.type === UPDEATE_NEW_POST_TEXT){
             this._state.profilePage.newPostChange = action.newText;
             this._callSubscriber(this._state);
-        } else if(action.type === 'ADD-MESSANGER'){
+        } else if(action.type === ADD_MESSANGER){
+            
             let newMassenger = {
                 id: 4,
                 messanger: this._state.dialogPage.newDialogText,
@@ -84,12 +90,18 @@ let store = {
             this._state.dialogPage.messangers.push(newMassenger);
             this._state.dialogPage.newDialogText = "";
             this._callSubscriber(this._state);
-        }else if (action.type === 'UPDEATE-NEW-MASSENGER-TEXT'){
-            this._state.dialogPage.newDialogText = action.newMassenger;
-            this._callSubscriber(this._state);
+        } else {
+            if (action.type === UPDEATE_NEW_MESSANGER_TEXT){
+                        this._state.dialogPage.newDialogText = action.newMassenger;
+                        this._callSubscriber(this._state);
+                    }
         }
     }
-}
+};
+export const AddPostActionCreater = () => ( {type: ADD_POST});
+export const UpdeateNewPostTextActionCreater = (text) => ({type: UPDEATE_NEW_POST_TEXT, newText: text});
+export const AddMessangerActionCreater = () => ({type:ADD_MESSANGER});
+export const UpdeateNewMessangerTextActionCreater = (text) => ({type: UPDEATE_NEW_MESSANGER_TEXT, newMassenger: text});
 
 window.store = store;
 export default store;

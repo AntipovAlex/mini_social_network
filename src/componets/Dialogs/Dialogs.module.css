@@ -20,3 +20,14 @@
     padding: 5px;
     border-radius: 10px;
 }
+.dialogsImput{
+    border-radius: 20px;
+    margin-left: 5px;
+    width: 400px;
+    height: 80px;
+}
+.button{
+    border-radius: 10px;
+    margin: 5px;
+    background-color: lightseagreen;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import style from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Messanger from "./Messanger/Messanger";
-
+import {AddMessangerActionCreater, UpdeateNewMessangerTextActionCreater} from "../../redux/state";
 
 const Dialogs = (props) => {
 
@@ -14,12 +14,12 @@ const Dialogs = (props) => {
     let newMessangerElement = React.createRef();
 
     let addMessanger = () => {
-        props.dispatch({type: 'ADD-MESSANGER'});
+        props.dispatch(AddMessangerActionCreater());
     }
 
     let onDialogChange = () => {
         let text = newMessangerElement.current.value;
-        props.dispatch({type: 'UPDEATE-NEW-MASSENGER-TEXT', newMassenger: text});
+        props.dispatch(UpdeateNewMessangerTextActionCreater(text));
     }
     return (
         <div className={style.dialogs}>
@@ -30,11 +30,11 @@ const Dialogs = (props) => {
                 {messangerElement}
             </div>
             <div>
-                <textarea onChange={onDialogChange}
+                <textarea className={style.dialogsImput} onChange={onDialogChange}
                           ref={newMessangerElement}
                           value={props.dialogPage.newDialogText}/>
                 <div>
-                    <button onClick={addMessanger}> Add messanger </button>
+                    <button className={style.button} onClick={addMessanger}> Add messanger </button>
                 </div>
             </div>
         </div>
