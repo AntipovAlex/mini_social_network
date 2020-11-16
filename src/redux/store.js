@@ -1,4 +1,4 @@
-import profileReduser from "./ProfileReduser";
+;/*import profileReduser from "./ProfileReduser";
 import dialogsReduser from "./DialogsReduser";
 import siteBarReduser from "./SiteBarReduser";
 
@@ -48,8 +48,5 @@ let store = {
             }
 }
 
-
-
-
 window.store = store;
-export default store;
+export default store*/

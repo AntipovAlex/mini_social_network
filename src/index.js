@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import store  from "./redux/state";
+import store  from "./redux/reduxStore";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -8,13 +8,16 @@ import App from './App';
 export let reRenderEntireThee = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)}/>
+            <App state={state} dispatch={store.dispatch.bind(store)} store = {store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 reRenderEntireThee(store.getState());
-store.subscribe(reRenderEntireThee);
+store.subscribe(() => {
+    let state = store.getState()
+    reRenderEntireThee(state)
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
