@@ -21,13 +21,15 @@
     border-radius: 10px;
 }
 .dialogsImput{
-    border-radius: 20px;
+    border-radius: 15px;
     margin-left: 5px;
-    width: 400px;
-    height: 80px;
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
 }
 .button{
     border-radius: 10px;
     margin: 5px;
     background-color: lightseagreen;
+    margin-top: 10px;
 }
