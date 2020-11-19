@@ -11,13 +11,13 @@ const Dialogs = (props) => {
     let messangerElement = props.dialogPage.messangers
         .map(messanger => <Messanger messanger={messanger.messanger}/>)
 
-    let addMessanger = () => {
-        props.dispatch(AddMessangerActionCreater());
+    let onAddMessanger = () => {
+        props.addMassenger();
     }
 
     let onDialogChange = (e) => {
         let text = e.target.value;
-        props.dispatch(UpdeateNewMessangerTextActionCreater(text));
+        props.updateNewMessangeText(text)
     }
     return (
         <div className={style.dialogs}>
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
                                    value={props.dialogPage.newDialogText}/>
                     </div>
                     <div>
-                        <button className={style.button} onClick={addMessanger}> Add messanger</button>
+                        <button className={style.button} onClick={onAddMessanger}> Add messanger</button>
                     </div>
                 </div>
             </div>

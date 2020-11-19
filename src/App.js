@@ -2,14 +2,15 @@ import './App.css';
 import Header from "./componets/Header/Header";
 import Navbar from "./componets/Navbar/Navbar";
 import Profile from "./componets/Profile/Profile";
-import Dialogs from "./componets/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Settings from "./componets/Settings/Settings";
+import DialogsContainer from "./componets/Dialogs/DialogsContainer";
+import UsersContainer from "./componets/Users/UsersContainer";
 
 
-function App(props) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -18,11 +19,11 @@ function App(props) {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/profile" render={() =>
-                        <Profile profilePage={props.state.profilePage}
-                                 dispatch={props.dispatch}/>}/>
+                        <Profile />}/>
                     <Route path="/dialogs" render={() =>
-                        <Dialogs dialogPage={props.state.dialogPage}
-                                 dispatch={props.dispatch}/>}/>
+                        <DialogsContainer />}/>
+                    <Route path="/users" render={() =>
+                        <UsersContainer />}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
