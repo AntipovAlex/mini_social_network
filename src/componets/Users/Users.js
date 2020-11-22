@@ -4,51 +4,40 @@ import * as axios from 'axios';
 import userPhoto from './../../assest/img/images.jpeg'
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
+            })
+    }
+    onCurrentPage (numberPage){
+        this.props.setCurrentPage(numberPage)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
             })
     }
 
-
-    /*props.setUsers(
-        [{
-            id: 1,
-            photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfeyZMEfKAd06REhopTj9gEL4ToZAjnYf2Q&usqp=CAU",
-            followed: false,
-            fullName: "Sasha",
-            status: "i am a boss",
-            location: {city: "Kiev", country: "Ukrain"}
-        },
-            {
-                id: 2,
-                photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfeyZMEfKAd06REhopTj9gEL4ToZAjnYf2Q&usqp=CAU",
-                followed: true,
-                fullName: "Koly",
-                status: "i am a big boss",
-                location: {city: "Minsk", country: "Belarus"}
-            },
-            {
-                id: 3,
-                photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfeyZMEfKAd06REhopTj9gEL4ToZAjnYf2Q&usqp=CAU",
-                followed: false,
-                fullName: "Andrey",
-                status: "i am a littel boss",
-                location: {city: "New York", country: "USA"}
-            }]*/
-
     render() {
-        return (
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let page = [];
+        for (let i = 1; i <= pagesCount; i++) {
 
-            < div> {
-                this.props.users.map(u =>
-                        <div key={u.id}>
+            page.push(i)
+        }
+        return <div>
+            <div>{page.map(p => {
+                   return <span className={this.props.currentPage === p && styles.selectPage}
+                         onClick={() => {this.onCurrentPage(p)}}>{p}</span>
+                })}
+            </div>
+            {this.props.users.map(u =>
+                <div key={u.id}>
                 <span>
                     <div>
-                        <img src={userPhoto} className={styles.usersPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.usersPhoto}/>
                     </div>
                     <div>
                         {u.followed
@@ -60,20 +49,20 @@ class Users extends React.Component {
                             }}>Follow</button>}
                     </div>
                 </span>
-                            <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div> country </div>
-                        <div> city </div>
+                        <div> {u.email} </div>
+                        <div> {u.totalCount} </div>
                     </span>
                 </span>
-                        </div>
-                )
+                </div>
+            )
             }
-            </div>)
+        </div>
     }
 }
 
