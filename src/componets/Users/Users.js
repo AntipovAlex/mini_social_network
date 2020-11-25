@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../../assest/img/images.jpeg';
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
 
@@ -10,20 +11,22 @@ const Users = (props) => {
         page.push(i)
     }
     return (
-    <div>
-        <div>{page.map(p => {
-            return <span key={p} className={props.currentPage === p ? styles.selectPage : null}
-                         onClick={(e) => {
-                             props.onCurrentPage(p)
-                         }}>{p}</span>
-        })}
-        </div>
-        {props.users.map(u =>
-            <div key={u.id}>
+        <div>
+            <div>{page.map(p => {
+                return <span key={p} className={props.currentPage === p ? styles.selectPage : null}
+                             onClick={(e) => {
+                                 props.onCurrentPage(p)
+                             }}>{p}</span>
+            })}
+            </div>
+            {props.users.map(u =>
+                <div key={u.id}>
                 <span>
                     <div>
+                        <NavLink to={"/profile/"+ u.id}>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.usersPhoto}/>
-                    </div>
+                    </NavLink>
+                        </div>
                     <div>
                         {u.followed
                             ? <button onClick={() => {
@@ -34,7 +37,7 @@ const Users = (props) => {
                             }}>Follow</button>}
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -44,10 +47,10 @@ const Users = (props) => {
                         <div> {u.totalCount} </div>
                     </span>
                 </span>
-            </div>
-        )
-        }
-    </div>)
+                </div>
+            )
+            }
+        </div>)
 }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import {AddPostActionCreater, UpdeateNewPostTextActionCreater} from "../../../redux/ProfileReduser";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
 import {connect} from "react-redux";
 
 

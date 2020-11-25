@@ -4,4 +4,9 @@
 }
 .descriptionBlock {
     padding: 10px;
+
+}
+.descriptionBlock img{
+    width: 350px;
+    height: 350px;
 }
