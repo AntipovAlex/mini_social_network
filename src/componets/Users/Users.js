@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Users.module.css';
-import userPhoto from './../../assest/img/images.jpeg'
+import userPhoto from './../../assest/img/images.jpeg';
 
 const Users = (props) => {
 
@@ -12,7 +12,7 @@ const Users = (props) => {
     return (
     <div>
         <div>{page.map(p => {
-            return <span className={props.currentPage === p && styles.selectPage}
+            return <span key={p} className={props.currentPage === p ? styles.selectPage : null}
                          onClick={(e) => {
                              props.onCurrentPage(p)
                          }}>{p}</span>
@@ -27,10 +27,10 @@ const Users = (props) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                props.unfollowe(u.id)
                             }}>Unfollow</button>
                             : <button onClick={() => {
-                                props.follow(u.id)
+                                props.followe(u.id)
                             }}>Follow</button>}
                     </div>
                 </span>
@@ -40,8 +40,8 @@ const Users = (props) => {
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div> u.email </div>
-                        <div> u.totalCount </div>
+                        <div> {u.email}</div>
+                        <div> {u.totalCount} </div>
                     </span>
                 </span>
             </div>
