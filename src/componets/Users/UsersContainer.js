@@ -14,7 +14,8 @@ class UsersContainerApi extends React.Component {
 
     componentDidMount() {
         this.props.toggelIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.toggelIsFetching(false)
                 this.props.setUsers(response.data.items);
@@ -25,7 +26,8 @@ class UsersContainerApi extends React.Component {
     onCurrentPage = (numberPage) => {
         this.props.toggelIsFetching(true)
         this.props.setCurrentPage(numberPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.toggelIsFetching(false)

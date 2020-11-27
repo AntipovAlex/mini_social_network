@@ -6,7 +6,6 @@ const ProfileInfo = (props) => {
     if(!props.profile){
         return <Preloder/>
     }
-    debugger;
     return (
         <div className={style.content}>
             <div>
@@ -15,7 +14,9 @@ const ProfileInfo = (props) => {
             </div>
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                ava+description
+                <h2>{props.profile.fullName}</h2>
+                <div> {props.profile.aboutMe}</div>
+                <div>"{props.profile.lookingForAJobDescription}"</div>
             </div>
         </div>
 
