@@ -1,7 +1,6 @@
 import React from 'react';
 import {AddMessangerActionCreater, UpdeateNewMessangerTextActionCreater} from "../../redux/DialogsReduser";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
 import {connect} from "react-redux";
 
 /*const DialogsContainer1 = () => {
@@ -27,7 +26,8 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
     return {
         newDialogText: state.newDialogText,
-        dialogPage: state.dialogPage
+        dialogPage: state.dialogPage,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch) => {

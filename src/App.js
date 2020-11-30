@@ -8,6 +8,7 @@ import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
 import ProfileContainer from "./componets/Profile/ProfileContainer";
 import HeaderContainer from "./componets/Header/HeaderContainer";
+import Login from "./componets/Login/Login";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
+                    <Route path="/login" component={Login}/>
                 </div>
             </div>
         </BrowserRouter>
