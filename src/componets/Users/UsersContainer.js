@@ -8,9 +8,11 @@ import {
     unfollow
 } from "../../redux/UsersReduser";
 import Preloder from "../common/Preloder/Preloder";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
-class UsersContainerApi extends React.Component {
+class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsersThunkCreater(this.props.currentPage, this.props.pageSize);
@@ -71,15 +73,13 @@ let mapStateToProps = (state) => {
     }
 }*/
 
-
-const UsersContainer = connect(mapStateToProps,
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps,
     {
         follow,
         unfollow,
         setCurrentPage,
         toggleFollowingProgress,
         getUsersThunkCreater
-    })
-(UsersContainerApi)
-
-export default UsersContainer;
+    }))(UsersContainer);
