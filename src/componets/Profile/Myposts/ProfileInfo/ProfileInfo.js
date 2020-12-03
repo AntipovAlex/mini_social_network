@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
                     src="https://images.pexels.com/photos/315998/pexels-photo-315998.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
             </div>
             <div>
-                <ProfileStatus status = "Hello big world!!!"/>
+                <ProfileStatus status ={props.status} updateStatus = {props.updateStatus}/>
             </div>
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large}/>

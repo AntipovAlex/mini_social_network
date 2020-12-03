@@ -1,8 +1,10 @@
-import {usersApi} from "../api/api";
+import {profileApi} from "../api/api";
 
 const UPDEATE_NEW_POST_TEXT = 'UPDEATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_STATUS = 'SET-STATUS';
+const UPDATE_STATUS = 'UPDATE-STATUS';
 
 let initialState = {
     posts: [
@@ -12,7 +14,8 @@ let initialState = {
         {id: 4, post: "Super.", likeCount: "6"},
     ],
     newPostChange: "Hi, hi my freinds",
-    profile: null
+    profile: null,
+    status: ""
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -37,6 +40,9 @@ const profileReduser = (state = initialState, action) => {
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
+        case SET_STATUS: {
+            return {...state, status: action.status}
+        }
         default:
             return state;
 
@@ -46,11 +52,33 @@ const profileReduser = (state = initialState, action) => {
 export const AddPostActionCreater = () => ({type: ADD_POST});
 export const UpdeateNewPostTextActionCreater = (text) => ({type: UPDEATE_NEW_POST_TEXT, newText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status});
+
 export const getUserProfile = (userId) => {
     return (dispatch) => {
-        usersApi.getProfileUser(userId)
+        profileApi.getProfileUser(userId)
             .then(data => {
                 dispatch(setUserProfile(data));
+            })
+    }
+};
+
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        profileApi.getStatus(userId)
+            .then(data => {
+                dispatch(setStatus(data));
+            })
+    }
+};
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileApi.updateStatus(status)
+            .then(data => {
+                if(data.resultCode === 0) {
+                    dispatch(setStatus(status));
+                }
             })
     }
 };
