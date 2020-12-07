@@ -1,5 +1,4 @@
 const ADD_MESSANGER = 'ADD-MESSANGER';
-const UPDEATE_NEW_MESSANGER_TEXT = 'UPDEATE-NEW-MESSANGER-TEXT';
 
 let initialiState = {
     messangers: [
@@ -14,8 +13,7 @@ let initialiState = {
         {id: 4, name: "Lyda"},
         {id: 5, name: "Petro"},
         {id: 6, name: "Viktor"},
-    ],
-    newDialogText: "Hello? hello"
+    ]
 };
 
 const dialogsReduser = (state = initialiState, action) => {
@@ -23,24 +21,17 @@ const dialogsReduser = (state = initialiState, action) => {
         case ADD_MESSANGER: {
             let newMassenger = {
                 id: 4,
-                messanger: state.newDialogText,
+                messanger: action.addMassenger,
             }
             let stateCopy = {...state};
             stateCopy.messangers = [...state.messangers]
             stateCopy.messangers.push(newMassenger);
-            stateCopy.newDialogText = "";
-            return stateCopy;
-        }
-        case UPDEATE_NEW_MESSANGER_TEXT: {
-            let stateCopy = {...state}
-            stateCopy.newDialogText = action.newMassenger;
             return stateCopy;
         }
         default:
             return state;
     }
 }
-export const AddMessangerActionCreater = () => ({type: ADD_MESSANGER});
-export const UpdeateNewMessangerTextActionCreater = (text) => ({type: UPDEATE_NEW_MESSANGER_TEXT, newMassenger: text});
+export const AddMessangerActionCreater = (addMassenger) => ({type: ADD_MESSANGER, addMassenger});
 
 export default dialogsReduser;

@@ -33,11 +33,8 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        addMassenger: () => {
-            dispatch(AddMessangerActionCreater());
-        },
-        updateNewMessangeText: (text) => {
-            dispatch(UpdeateNewMessangerTextActionCreater(text))
+        addMassenger: (addMassenger) => {
+            dispatch(AddMessangerActionCreater(addMassenger));
         }
     }
 }
