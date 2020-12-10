@@ -8,7 +8,6 @@ import {
     unfollow
 } from "../../redux/UsersReduser";
 import Preloder from "../common/Preloder/Preloder";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -74,7 +73,6 @@ let mapStateToProps = (state) => {
 }*/
 
 export default compose(
-    withAuthRedirect,
     connect(mapStateToProps,
     {
         follow,
