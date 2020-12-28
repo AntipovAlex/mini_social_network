@@ -24,7 +24,7 @@ const dialogsReduser = (state = initialiState, action) => {
                 messanger: action.addMassenger,
             }
             let stateCopy = {...state};
-            stateCopy.messangers = [...state.messangers]
+            stateCopy.messangers = [...state.messangers];
             stateCopy.messangers.push(newMassenger);
             return stateCopy;
         }

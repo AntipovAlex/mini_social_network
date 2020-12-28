@@ -22,32 +22,33 @@ const authReduser = (state = initialiState, action) => {
             return state;
     }
 }
-export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        return usersApi.getMe()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let {id, email, login} = data.data;
-                    dispatch(setAuthUserData(id, email, login, true));
-                }
-            })
-    }
-};
+export const setAuthUserData = (userId, email, login, isAuth) => ({
+    type: SET_USER_DATA,
+    payload: {userId, email, login, isAuth}
+});
+export const getAuthUserData = () =>
+    async (dispatch) => {
+        let data = await usersApi.getMe()
+        if (data.resultCode === 0) {
+            let {id, email, login} = data.data;
+            dispatch(setAuthUserData(id, email, login, true));
+        }
 
-export const login = (email, password, rememberme) => {
-    return (dispatch) => {
-        authApi.login(email, password, rememberme)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthUserData());
-                } else {
-                    let messages = data.messages.length > 0 ? data.messages[0] : "Some error";
-                    dispatch(stopSubmit( "login", {_error : messages}))
-                }
-            })
     }
-};
+
+export const login = (email, password, rememberme) =>
+    async (dispatch) => {
+        let data = await authApi.login(email, password, rememberme)
+
+        if (data.resultCode === 0) {
+            dispatch(getAuthUserData());
+        } else {
+            let messages = data.messages.length > 0 ? data.messages[0] : "Some error";
+            dispatch(stopSubmit("login", {_error: messages}))
+        }
+
+    }
+
 
 export const logout = () => {
     return (dispatch) => {

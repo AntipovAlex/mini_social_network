@@ -1,4 +1,3 @@
-import {authApi, usersApi} from "../api/api";
 import {getAuthUserData} from "./AuthReduser";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
@@ -25,7 +24,7 @@ export const initializedApp = () => (dispatch) => {
        let promise =  dispatch(getAuthUserData());
         Promise.all([promise])
             .then(() => {
-           dispatch(initializedSuccess());
+            dispatch(initializedSuccess());
     })
 };
 
