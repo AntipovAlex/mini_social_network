@@ -10,3 +10,7 @@
     width: 350px;
     height: 350px;
 }
+.avatar{
+    max-height: 250px;
+    max-width: 250px;
+}

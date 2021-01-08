@@ -2,11 +2,19 @@ import React from 'react';
 import style from './ProfileInfo.module.css';
 import Preloder from "../../../common/Preloder/Preloder";
 import ProfileStatusWithHook from "../../ProfileStatusWithHook";
+import userPhoto from './../../../../assest/img/images.jpeg';
 
 const ProfileInfo = (props) => {
     if(!props.profile){
         return <Preloder/>
     }
+
+    const onMainPhotoSelector = (e) => {
+        if(e.target.files.length){
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div className={style.content}>
             <div>
@@ -17,7 +25,10 @@ const ProfileInfo = (props) => {
                 <ProfileStatusWithHook status ={props.status} updateStatus = {props.updateStatus}/>
             </div>
             <div className={style.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img className={style.avatar} src={props.profile.photos.large || userPhoto}/>
+                <div>
+                    {props.isOwner && <input type="file" onChange={onMainPhotoSelector}/> }
+                </div>
                 <h2>{props.profile.fullName}</h2>
                 <div> {props.profile.aboutMe}</div>
                 <div>"{props.profile.lookingForAJobDescription}"</div>
