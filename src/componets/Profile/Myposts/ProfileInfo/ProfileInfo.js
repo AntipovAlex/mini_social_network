@@ -21,7 +21,6 @@ const ProfileInfo = ({profile, savePhoto, status, updateStatus, isOwner, savePro
     }
 
     const onSubmit = (formData) => {
-        debugger
         saveProfile(formData).then(
             () => {
                 setEditMode(false);

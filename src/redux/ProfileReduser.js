@@ -102,8 +102,10 @@ export const saveProfile = (profile) =>
         if (data.resultCode === 0) {
             dispatch(getUserProfile(userId));
         } else {
-            debugger
-            dispatch(stopSubmit("editProfile", {_error: data.messages[0]}));
+            let key = data.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
+            dispatch(stopSubmit('editProfile', {
+                contacts: {[key]: data.messages[0]},
+            }));
             return Promise.reject(data.messages[0])
 
         }
