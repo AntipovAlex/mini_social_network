@@ -41,7 +41,7 @@ class App extends Component {
                             </Suspense>
                             }/>
                         <Route path="/users" render={() =>
-                            <UsersContainer/>}/>
+                            <UsersContainer setTitle = "Список"/>}/>
                         <Route path="/news" component={News}/>
                         <Route path="/music" component={Music}/>
                         <Route path="/settings" component={Settings}/>

@@ -123,22 +123,22 @@ export const getUsersThunkCreater =(page: number, pageSize: number) => async (di
                 dispatch(setTotalUsersCount(data.totalCount));
 
 }
-export const follow = (userid: number) => async (dispatch: any) => {
-        dispatch(toggleFollowingProgress(true, userid))
-        const data = await usersApi.follow(userid)
+export const follow = (userId: number) => async (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        const data = await usersApi.follow(userId)
                 if (data.resultCode === 0) {
-                    dispatch(followeSuccess(userid))
+                    dispatch(followeSuccess(userId))
                 }
-                dispatch(toggleFollowingProgress(false, userid))
+                dispatch(toggleFollowingProgress(false, userId))
 
 }
 
-export const unfollow = (userid: number) => async (dispatch: any) => {
-        dispatch(toggleFollowingProgress(true, userid))
-        const data = await usersApi.unFollow(userid)
+export const unfollow = (userId: number) => async (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        const data = await usersApi.unFollow(userId)
                 if (data.resultCode === 0) {
-                    dispatch(unfolloweSuccess(userid))
+                    dispatch(unfolloweSuccess(userId))
                 }
-                dispatch(toggleFollowingProgress(false, userid))
+                dispatch(toggleFollowingProgress(false, userId))
 
 }
