@@ -4,8 +4,6 @@ import React from 'react';
 import {
     follow,
     getUsersThunkCreater,
-    setCurrentPage,
-    toggleFollowingProgress,
     unfollow
 } from "../../redux/UsersReduser";
 import Preloder from "../common/Preloder/Preloder";
